@@ -2,13 +2,13 @@ import React from "react";
 import {
   Container,
   Grid,
-  MuiThemeProvider,
+  ThemeProvider,
   Typography,
 } from "@material-ui/core";
 
 function Success() {
   return (
-    <MuiThemeProvider>
+    <ThemeProvider>
       <React.Fragment>
         <Container maxWidth="xs">
           <Grid container justify="center" alignItems="center">
@@ -18,7 +18,7 @@ function Success() {
           </Grid>
         </Container>
       </React.Fragment>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

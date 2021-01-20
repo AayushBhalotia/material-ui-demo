@@ -5,6 +5,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import theme from "./MUI-Theme"
 
 function Counter() {
   const [countleft, setCountleft] = useState(0);
@@ -24,7 +25,7 @@ function Counter() {
 
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <Container maxWidth="md">
         <Grid container alignItems="center" justify="space-around">
           <Grid item xs={2}>

@@ -1,5 +1,6 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import MenuBookIcon from '@material-ui/icons/MenuBookOutlined';
 import {
   Container,
   Grid,
@@ -13,7 +14,7 @@ import {
   RadioGroup,
   Select,
   MenuItem,
-  MuiThemeProvider,
+  ThemeProvider,
   styled,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
@@ -29,6 +30,7 @@ const useStyles = makeStyles(() => ({
   label: {
     fontSize: "inherit",
   },
+  
 }));
 
 const SignupButton = styled(Button)({
@@ -49,7 +51,7 @@ export default function UserDetails({ nextStep, handleChange, User }) {
   };
 
   return (
-    <MuiThemeProvider>
+    <ThemeProvider>
       <React.Fragment>
         <CssBaseline />
         <Container maxWidth="xs">
@@ -151,6 +153,7 @@ export default function UserDetails({ nextStep, handleChange, User }) {
                   className={classes.formControl}
                   onChange={handleChange("course")}
                   defaultValue={User.course}
+                  IconComponent = {MenuBookIcon}
                   required
                 >
                   <MenuItem value={"JEE"}>JEE</MenuItem>
@@ -179,6 +182,6 @@ export default function UserDetails({ nextStep, handleChange, User }) {
           </form>
         </Container>
       </React.Fragment>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }

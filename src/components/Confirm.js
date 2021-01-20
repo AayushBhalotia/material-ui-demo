@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Container,
-  MuiThemeProvider,
+  ThemeProvider,
   Button,
   Grid,
   List,
@@ -11,7 +11,7 @@ import {
 
 function Confirm({ nextStep, prevStep, User }) {
   return (
-    <MuiThemeProvider>
+    <ThemeProvider>
       <React.Fragment>
         <Container maxWidth="xs">
           <Grid
@@ -55,7 +55,7 @@ function Confirm({ nextStep, prevStep, User }) {
           </Grid>
         </Container>
       </React.Fragment>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

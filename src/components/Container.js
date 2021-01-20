@@ -1,5 +1,4 @@
-import React from "react";
-import Counter from "./Counter";
+import React, { Suspense } from "react";
 import Header from "./Header";
 import {
   BrowserRouter as Router,
@@ -7,21 +6,35 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import UserForm from "./UserForm";
+import { LinearProgress, makeStyles } from "@material-ui/core";
+
+const Counter = React.lazy(() => import("./Counter"));
+const UserForm = React.lazy(() => import("./UserForm"));
+
+const useStyles = makeStyles(() => ({
+  root: {
+    margin: "5rem",
+  },
+}));
 
 function Container() {
+  const classes = useStyles();
   return (
     <Router>
-      <div>
+      <Suspense
+        fallback={
+          <LinearProgress classes={{ root: classes.root }} color="primary" />
+        }
+      >
         <Header />
         <Switch>
           <Route path="/Dashboard" exact component={Counter} />
           <Route path="/Account" exact component={UserForm} />
           <Route path="*">
-          <Redirect to="/Dashboard"/>
+            <Redirect to="/Dashboard" />
           </Route>
         </Switch>
-      </div>
+      </Suspense>
     </Router>
   );
 }
