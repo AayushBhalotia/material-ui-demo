@@ -5,14 +5,14 @@ import Success from "./Success";
 
 function UserForm() {
   const [Step, setStep] = useState(1);
-  const [User, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    gender: "",
-    course: "",
-  });
+  // const [User, setUser] = useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   password: "",
+  //   gender: "",
+  //   course: "",
+  // });
 
   //proceed to next step
   const nextStep = () => {
@@ -24,9 +24,9 @@ function UserForm() {
   };
 
   //Handle fields change
-  const handleChange = (input) => (e) => {
-    setUser({ ...User, [input]: e.target.value });
-  };
+  // const handleChange = (input) => (e) => {
+  //   setUser({ ...User, [input]: e.target.value });
+  // };
  
 
   switch (Step) {
@@ -34,8 +34,8 @@ function UserForm() {
       return (
         <UserDetails
           nextStep={nextStep}
-          handleChange={handleChange}
-          User={User}
+          // handleChange={handleChange}
+          // User={User}
         />
       );
 
@@ -44,8 +44,8 @@ function UserForm() {
         <Confirm
           nextStep={nextStep}
           prevStep={prevStep}
-          handleChange={handleChange}
-          User={User}
+          // handleChange={handleChange}
+          // User={User}
         />
       );
 

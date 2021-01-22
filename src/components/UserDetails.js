@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import MenuBookIcon from '@material-ui/icons/MenuBookOutlined';
+import MenuBookIcon from "@material-ui/icons/MenuBookOutlined";
 import {
   Container,
   Grid,
@@ -18,6 +18,7 @@ import {
   styled,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { UserContext } from "../App";
 
 const useStyles = makeStyles(() => ({
   formControl: {
@@ -30,7 +31,6 @@ const useStyles = makeStyles(() => ({
   label: {
     fontSize: "inherit",
   },
-  
 }));
 
 const SignupButton = styled(Button)({
@@ -43,12 +43,14 @@ const SignupButton = styled(Button)({
   padding: "0 30px",
 });
 
-export default function UserDetails({ nextStep, handleChange, User }) {
+export default function UserDetails({ nextStep }) {
   const classes = useStyles();
   const formSubmit = (e) => {
     e.preventDefault();
     nextStep();
   };
+
+  const userContext = useContext(UserContext);
 
   return (
     <ThemeProvider>
@@ -75,8 +77,13 @@ export default function UserDetails({ nextStep, handleChange, User }) {
                   label="First Name"
                   name="firstName"
                   autoComplete="fname"
-                  onChange={handleChange("firstName")}
-                  defaultValue={User.firstName}
+                  onChange={(e) =>
+                    userContext.UserDispatch({
+                      type: "firstname",
+                      value: e.target.value,
+                    })
+                  }
+                  defaultValue={userContext.User.firstName}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -88,8 +95,13 @@ export default function UserDetails({ nextStep, handleChange, User }) {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lname"
-                  onChange={handleChange("lastName")}
-                  defaultValue={User.lastName}
+                  onChange={(e) =>
+                    userContext.UserDispatch({
+                      type: "lastname",
+                      value: e.target.value,
+                    })
+                  }
+                  defaultValue={userContext.User.lastName}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -102,8 +114,13 @@ export default function UserDetails({ nextStep, handleChange, User }) {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  onChange={handleChange("email")}
-                  defaultValue={User.email}
+                  onChange={(e) =>
+                    userContext.UserDispatch({
+                      type: "email",
+                      value: e.target.value,
+                    })
+                  }
+                  defaultValue={userContext.User.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -116,8 +133,13 @@ export default function UserDetails({ nextStep, handleChange, User }) {
                   type="password"
                   id="password"
                   autoComplete="current-password"
-                  onChange={handleChange("password")}
-                  defaultValue={User.password}
+                  onChange={(e) =>
+                    userContext.UserDispatch({
+                      type: "password",
+                      value: e.target.value,
+                    })
+                  }
+                  defaultValue={userContext.User.password}
                 />
               </Grid>
 
@@ -127,8 +149,13 @@ export default function UserDetails({ nextStep, handleChange, User }) {
                   row
                   label="Gender"
                   name="gender"
-                  defaultValue={User.gender}
-                  onChange={handleChange("gender")}
+                  onChange={(e) =>
+                    userContext.UserDispatch({
+                      type: "gender",
+                      value: e.target.value,
+                    })
+                  }
+                  defaultValue={userContext.User.gender}
                 >
                   <FormControlLabel
                     value="Female"
@@ -151,9 +178,14 @@ export default function UserDetails({ nextStep, handleChange, User }) {
                 <InputLabel>Courses</InputLabel>
                 <Select
                   className={classes.formControl}
-                  onChange={handleChange("course")}
-                  defaultValue={User.course}
-                  IconComponent = {MenuBookIcon}
+                  onChange={(e) =>
+                    userContext.UserDispatch({
+                      type: "course",
+                      value: e.target.value,
+                    })
+                  }
+                  defaultValue={userContext.User.course}
+                  IconComponent={MenuBookIcon}
                   required
                 >
                   <MenuItem value={"JEE"}>JEE</MenuItem>
